@@ -14,9 +14,10 @@
         body {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             height: 100vh;
             margin: 0;
+            padding-top: 10vh;
             padding-bottom: 280px;
             background-color: #f2f2f2;
             transition: background-color 0.3s;
@@ -308,6 +309,13 @@
             document.body.classList.toggle('night-mode');
             const button = document.querySelector('.mode-toggle');
             button.textContent = isNightMode ? 'Day' : 'Night';
+            
+            // Update theme color for both night and day modes
+            document.querySelector('meta[name="theme-color"]').setAttribute(
+                'content', 
+                isNightMode ? '#000000' : '#f2f2f2'
+            );
+            
             if (isNightMode) {
                 applyNightModeStyles();
             } else {
