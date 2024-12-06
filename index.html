@@ -139,7 +139,7 @@
         -
     </button>
     <button class="mode-toggle" onclick="toggleNightMode()">
-        Night Mode
+        Night
     </button>
     <button class="brightness-button plus-button" onclick="adjustBrightness(true)">
         +
@@ -307,7 +307,7 @@
             isNightMode = !isNightMode;
             document.body.classList.toggle('night-mode');
             const button = document.querySelector('.mode-toggle');
-            button.textContent = isNightMode ? 'Day Mode' : 'Night Mode';
+            button.textContent = isNightMode ? 'Day' : 'Night';
             if (isNightMode) {
                 applyNightModeStyles();
             } else {
@@ -445,7 +445,7 @@
 
         // Update the button text based on the initial mode
         const button = document.querySelector('.mode-toggle');
-        button.textContent = isNightMode ? 'Day Mode' : 'Night Mode';
+        button.textContent = isNightMode ? 'Day' : 'Night';
 
         document.addEventListener('keydown', (event) => {
             console.log("Key pressed:", event.key);
