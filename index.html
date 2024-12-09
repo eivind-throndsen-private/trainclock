@@ -447,6 +447,11 @@
         if (isNightMode) {
             document.body.classList.add('night-mode');
             applyNightModeStyles();
+            // Update theme color for initial night mode
+            document.querySelector('meta[name="theme-color"]').setAttribute(
+                'content', 
+                '#000000'
+            );
         } else {
             applyDayModeStyles();
         }

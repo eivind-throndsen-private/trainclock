@@ -1,4 +1,4 @@
-const CACHE_VERSION = '4';
+const CACHE_VERSION = '5';
 const CACHE_NAME = `swiss-clock-v${CACHE_VERSION}`;
 const ASSETS_TO_CACHE = [
   '/ch-clock/',
