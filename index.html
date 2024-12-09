@@ -73,9 +73,11 @@
             font-size: 20px;
             font-weight: bold;
             cursor: pointer;
-            transition: box-shadow 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-            display: none;
+            opacity: 0;
+            transform: translateX(-50%);
+            pointer-events: none;
             z-index: 1000;
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -85,14 +87,20 @@
             width: 60px;
         }
         .minus-button {
-            left: 20px;
-            width: 60px;
-            z-index: 2;
+            left: 50%;
         }
         .plus-button {
-            right: 20px;
-            width: 60px;
-            z-index: 2;
+            left: 50%;
+        }
+        .minus-button.active {
+            opacity: 1;
+            transform: translateX(calc(-50% - 200px));
+            pointer-events: auto;
+        }
+        .plus-button.active {
+            opacity: 1;
+            transform: translateX(calc(-50% + 200px));
+            pointer-events: auto;
         }
         body.night-mode .brightness-button {
             display: block;
@@ -316,9 +324,32 @@
                 isNightMode ? '#000000' : '#f2f2f2'
             );
             
+            const minusButton = document.querySelector('.minus-button');
+            const plusButton = document.querySelector('.plus-button');
+            
             if (isNightMode) {
+                // Show buttons immediately but start them at center
+                minusButton.style.display = 'block';
+                plusButton.style.display = 'block';
+                
+                // Trigger animation after a small delay
+                setTimeout(() => {
+                    minusButton.classList.add('active');
+                    plusButton.classList.add('active');
+                }, 50);
+                
                 applyNightModeStyles();
             } else {
+                // Animate buttons back to center
+                minusButton.classList.remove('active');
+                plusButton.classList.remove('active');
+                
+                // Hide buttons after animation completes
+                setTimeout(() => {
+                    minusButton.style.display = 'none';
+                    plusButton.style.display = 'none';
+                }, 500); // Match this with the CSS transition duration
+                
                 applyDayModeStyles();
             }
             console.log("Night mode toggled. Is night mode:", isNightMode);
