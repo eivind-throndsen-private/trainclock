@@ -1,0 +1,62 @@
+# Name and description of the semantic model.
+name: <name>
+description: <string>
+
+# A semantic model can contain one or more logical tables.
+tables:
+
+  # A logical table on top of a base table.
+  - name: <name>
+    description: <string>
+
+    # The fully qualified name of the base table.
+    base_table:
+      database: <database>
+      schema: <schema>
+      table: <base table name>
+
+    # Dimension columns in the logical table.
+    dimensions:
+      - name: <name>
+        synonyms: <array of strings>
+        description: <string>
+        expr: <SQL expression>
+        data_type: <data type>
+        unique: <boolean>
+        cortex_search_service_name: <string>
+
+    # Time dimension columns in the logical table.
+    time_dimensions:
+      - name: <name>
+        synonyms:  <array of strings>
+        description: <string>
+        expr: <SQL expression>
+        data_type: <data type>
+        unique: <boolean>
+
+    # Measure columns in the logical table.
+    measures:
+      - name: <name>
+        synonyms: <array of strings>
+        description: <string>
+        expr: <SQL expression>
+        data_type: <data type>
+        default_aggregation: <aggregate function>
+
+    # Commonly used filters over the logical table.
+    filters:
+      - name: <name>
+        synonyms: <array of strings>
+        description: <string>
+        expr: <SQL expression>
+
+# Example questions and queries that answer them
+verified_queries:
+
+# Verified Query (1 of n)
+- name:                         # A descriptive name of the query.
+  question:                     # The natural language question that this query answers.
+  verified_at:                  # Optional: Time (in seconds since the UNIX epoch, January 1, 1970) when the query was verified.
+  verified_by:                  # Optional: Name of the person who verified the query.
+  use_as_onboarding_question:   # Optional: Marks this question as an onboarding question for the end user.
+  sql:                          # The SQL query for answering the question.
