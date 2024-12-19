@@ -17,6 +17,7 @@
             align-items: flex-start;
             height: 95vh;
             margin: 0;
+            margin-top: -5vh; // move the clock up a bit 
             padding-top: 5vh;
             padding-bottom: 5vh;
             background-color: #f2f2f2;
@@ -517,20 +518,21 @@
                     });
             });
         }
-        window.addEventListener('resize', function() {
+
+    window.addEventListener('resize', function() {
     const clock = document.getElementById('clock');
     if (window.innerWidth > window.innerHeight) {
         // Landscape mode
-        clock.style.width = '95vw';
-        clock.style.height = '95vw';
-        clock.style.maxWidth = '95vw';
-        clock.style.maxHeight = '95vw';
+//        clock.style.width = '60vw';
+//        clock.style.height = '95vw';
+//        clock.style.maxWidth = '95vw';
+//        clock.style.maxHeight = '95vw';
     } else {
         // Portrait mode
-        clock.style.width = '95vh';
-        clock.style.height = '95vh';
-        clock.style.maxWidth = '95vh';
-        clock.style.maxHeight = '95vh';
+  //      clock.style.width = '95vh';
+  //      clock.style.height = '95vh';
+  //      clock.style.maxWidth = '95vh';
+  //      clock.style.maxHeight = '95vh';
     }
 });
     </script>
