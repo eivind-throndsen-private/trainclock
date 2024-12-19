@@ -17,7 +17,7 @@
             align-items: flex-start;
             height: 95vh;
             margin: 0;
-            padding-top: 0vh;
+            padding-top: 5vh;
             padding-bottom: 5vh;
             background-color: #f2f2f2;
             transition: background-color 0.3s;
@@ -517,6 +517,22 @@
                     });
             });
         }
+        window.addEventListener('resize', function() {
+    const clock = document.getElementById('clock');
+    if (window.innerWidth > window.innerHeight) {
+        // Landscape mode
+        clock.style.width = '95vw';
+        clock.style.height = '95vw';
+        clock.style.maxWidth = '95vw';
+        clock.style.maxHeight = '95vw';
+    } else {
+        // Portrait mode
+        clock.style.width = '95vh';
+        clock.style.height = '95vh';
+        clock.style.maxWidth = '95vh';
+        clock.style.maxHeight = '95vh';
+    }
+});
     </script>
 </body>
 </html>
