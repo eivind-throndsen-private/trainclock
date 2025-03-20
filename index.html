@@ -17,7 +17,7 @@
             align-items: flex-start;
             height: 80vh;
             margin: 0;
-            margin-top: -5vh; // move the clock up a bit 
+            margin-top: -5vh;  
             padding-top: 5vh;
             padding-bottom: 280px;
             background-color: #f2f2f2;
@@ -123,7 +123,7 @@
                     <feMergeNode in="SourceGraphic"></feMergeNode>
                 </feMerge>
             </filter>
-            <linearGradient id="rimGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="rimGradient" x1="0%" y1="0%" x2="100%">
                 <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
                 <stop offset="100%" style="stop-color:#e0e0e0;stop-opacity:1" />
             </linearGradient>
@@ -261,10 +261,11 @@
         let isMinuteHandAnimating = false;
 
         function springEasing(t) {
-            if (t >= 1) return 1;
+            if (t >= 1) return 0;
+            // Modified to ensure only clockwise movement with overshoot
             const decay = Math.pow(1 - t, SPRING_DECAY);
-            const oscillation = Math.cos(SPRING_FREQUENCY * Math.PI * t);
-            return 1 + decay * oscillation;
+            const oscillation = Math.sin(SPRING_FREQUENCY * Math.PI * t);
+            return Math.max(0, decay * oscillation); // Never negative
         }
 
         function updateClock() {
@@ -299,11 +300,11 @@
                 const elapsed = performance.now() - minuteHandAnimationStart;
                 if (elapsed <= SPRING_DURATION) {
                     const progress = elapsed / SPRING_DURATION;
-                    const springProgress = springEasing(progress);
-                    minuteAngle = minutes * 6 + (MAX_OVERSHOOT * (1 - springProgress));
+                    const springEffect = springEasing(progress);
+                    // Add overshoot (clockwise only) to the current minute position
+                    minuteAngle = minutes * 6 + (MAX_OVERSHOOT * springEffect);
                 } else {
                     isMinuteHandAnimating = false;
-                    minuteAngle = minutes * 6;
                 }
             } else {
                 isMinuteHandAnimating = false;
